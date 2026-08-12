@@ -1,12 +1,12 @@
 # spring-boot-security-starter
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub](https://img.shields.io/badge/GitHub-Fallen-leaves089%2Fspring--boot--security--starter-lightgrey?logo=github)](https://github.com/Fallen-leaves089/spring-boot-security-starter)
-[![Build](https://img.shields.io/github/actions/workflow/status/Fallen-leaves089/spring-boot-security-starter/ci.yml?branch=main&logo=github)](https://github.com/Fallen-leaves089/spring-boot-security-starter/actions)
+[![GitHub](https://img.shields.io/badge/GitHub-fallen-leaves089%2Fspring--boot--security--starter-lightgrey?logo=github)](https://github.com/fallen-leaves089/spring-boot-security-starter)
+[![Build](https://img.shields.io/github/actions/workflow/status/fallen-leaves089/spring-boot-security-starter/ci.yml?branch=main&logo=github)](https://github.com/fallen-leaves089/spring-boot-security-starter/actions)
 
 Spring Boot 3 安全增强 Starter：**JWT 无状态认证 + 安全响应头 + 接口限流**，开箱即用。
 
-MIT License. Copyright (c) 2024 Fallen-leaves089.
+MIT License. Copyright (c) 2024 fallen-leaves089.
 
 > 由 spring-boot-jwt-starter 与 spring-boot-security-filters 合并而来，一套依赖覆盖认证与防护。
 
