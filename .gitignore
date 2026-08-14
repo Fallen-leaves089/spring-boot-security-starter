@@ -1,12 +1,31 @@
-_archived_20260812/
-
 # Local working files (not part of the published repository)
+/_archived_20260812/
+/spring-boot-security-starter/
+/android-retrofit-kit/
+/tools/
 /enc-test.txt
 /pr-body.json
 /spec-android.json
 /spec-jwt.json
 /spec-security.json
-/tools/
-/_archived_20260812/
-/android-retrofit-kit/
-/spring-boot-security-starter/target/
+
+# Build outputs
+/target/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+bin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
