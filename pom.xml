@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>spring-boot-security-starter</name>
-    <description>Spring Boot ?? Starter ????JWT ?? + ?? + ???????????</description>
+    <description>Spring Boot 3 security starter: JWT authentication, security headers, and rate limiting</description>
     <url>https://github.com/fallen-leaves089/spring-boot-security-starter</url>
 
     <licenses>
