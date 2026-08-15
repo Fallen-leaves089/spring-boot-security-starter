@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `SECURITY.md` security policy
 - `CODE_OF_CONDUCT.md` contributor covenant
+- JitPack publishing instructions and dependency coordinates
+
+### Changed
+
+- Refactored the starter into a thin aggregator that depends on `spring-boot-jwt-starter` and `spring-boot-security-filters` instead of duplicating their source files
+- Removed local copies of JWT and filter classes; the new `RealIpFilter`, `CsrfTokenFilter`, and `MagicBytesValidator` are now available transitively from `spring-boot-security-filters`
 
 ## [1.0.0] - 2026-08-12
 
