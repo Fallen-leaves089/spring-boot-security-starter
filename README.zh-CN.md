@@ -1,7 +1,6 @@
 # spring-boot-security-starter
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub](https://img.shields.io/badge/GitHub-fallen-leaves089%2Fspring--boot--security--starter-lightgrey?logo=github)](https://github.com/fallen-leaves089/spring-boot-security-starter)
 [![Build](https://img.shields.io/github/actions/workflow/status/fallen-leaves089/spring-boot-security-starter/ci.yml?branch=main&logo=github)](https://github.com/fallen-leaves089/spring-boot-security-starter/actions)
 
 Spring Boot 3 安全增强聚合 Starter：**JWT 无状态认证 + 开箱即用的安全过滤器**，一套依赖覆盖认证与防护。
