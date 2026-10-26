@@ -6,7 +6,7 @@
 
     <groupId>com.github.fallen-leaves089</groupId>
     <artifactId>spring-boot-security-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>spring-boot-security-starter</name>
@@ -23,7 +23,7 @@
     <properties>
         <java.version>17</java.version>
         <spring-boot.version>3.2.5</spring-boot.version>
-        <jwt-starter.version>1.0.0</jwt-starter.version>
+        <jwt-starter.version>1.1.0</jwt-starter.version>
         <security-filters.version>1.0.0</security-filters.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

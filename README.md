@@ -15,16 +15,42 @@ MIT License. Copyright (c) 2024 fallen-leaves089.
 
 [中文说明](README.zh-CN.md)
 
+## 30-second overview
+
+- **Problem solved:** one dependency instead of wiring JWT authentication and security filters separately.
+- **What you get:** the JWT starter and the filter starter, including their Spring Boot auto-configurations.
+- **Use it when:** a Spring Boot 3 MVC app needs both authentication and baseline security filters.
+- **Not for:** apps that need only one capability; use the smaller leaf starter instead.
+
+## Shortest demo
+
+```xml
+<dependency>
+  <groupId>com.github.fallen-leaves089</groupId>
+  <artifactId>spring-boot-security-starter</artifactId>
+  <version>1.1.0</version>
+</dependency>
+```
+
+```yaml
+jwt:
+  secret: "${JWT_SECRET:replace-with-a-32-byte-secret}"
+  exclude-paths:
+    - /api/login
+```
+
+See [Quick start](#quick-start) for the full configuration.
+
 ---
 
 ## Features
 
 | Module | Provided by | Description |
 |--------|-------------|-------------|
-| JWT issuing and parsing | `spring-boot-jwt-starter` | Signs and parses tokens with JJWT 0.12.x and HMAC-SHA. |
+| JWT issuing and parsing | `spring-boot-jwt-starter` | Signs and parses tokens with JJWT 0.13.x and HMAC-SHA. |
 | JWT request validation | `spring-boot-jwt-starter` | Intercepts requests, validates tokens, and injects `userId`. |
 | Path traversal protection | `spring-boot-jwt-starter` | Rejects requests containing `../`, `..\\`, or encoded traversal sequences. |
-| Expired-token signaling | `spring-boot-jwt-starter` | Returns a `TOKEN_EXPIRED` marker on 401 responses. |
+| Distinct 401 reasons | `spring-boot-jwt-starter` | Returns `TOKEN_MISSING`, `TOKEN_INVALID`, or `TOKEN_EXPIRED` on 401 responses. |
 | Security headers | `spring-boot-security-filters` | Adds CSP / HSTS / X-Frame-Options and other response headers. |
 | Rate limiting | `spring-boot-security-filters` | IP-based sliding-window limiting with configurable 429 responses. |
 | Trusted-proxy real IP | `spring-boot-security-filters` | Resolves the client IP behind a trusted proxy. |
@@ -52,7 +78,7 @@ This project is published through [JitPack](https://jitpack.io). Add the JitPack
 <dependency>
     <groupId>com.github.fallen-leaves089</groupId>
     <artifactId>spring-boot-security-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -66,7 +92,7 @@ dependencyResolutionManagement {
 }
 
 dependencies {
-    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.0.0")
+    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.1.0")
 }
 ```
 
@@ -80,6 +106,9 @@ dependencies {
 jwt:
   secret: ${JWT_SECRET:dev-please-override}
   expiration: 86400
+  exclude-paths:
+    - /api/login
+    - /api/register
 
 security:
   rate-limit:
@@ -90,7 +119,7 @@ security:
     enabled: true
 ```
 
-No `@ComponentScan` or extra Java code is required.
+No `@ComponentScan` or extra Java code is required. No path is excluded from authentication by default; add every public endpoint to `jwt.exclude-paths`.
 
 ---
 
@@ -156,17 +185,23 @@ This aggregator intentionally keeps only a marker class. The behavior tests live
 
 ## Releasing
 
-JitPack builds a release automatically from a Git tag.
+JitPack builds a release automatically from a Git tag. Use the `v` prefix for the tag; the dependency coordinate above remains `1.1.0`.
 
 ```bash
-git tag 1.0.0
-git push origin 1.0.0
+git tag v1.1.0
+git push origin v1.1.0
 ```
 
 Then use:
 
 ```text
-https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.0.0
+https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.1.0
 ```
 
-Maven Central publishing requires OSSRH credentials, signed artifacts, and source/javadoc jars. The two dependency starters must be published before this aggregator can resolve from Maven Central.
+Publishing to Maven Central requires repository credentials, signed artifacts, and source/javadoc jars. The two dependency starters must be published before this aggregator can resolve from Maven Central.
+
+---
+
+## GitHub About
+
+`Spring Boot 3 security starter | JWT auth | Security headers | Rate limiting | CSRF | Real IP | Magic-byte validation`

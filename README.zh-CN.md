@@ -13,16 +13,42 @@ MIT License. Copyright (c) 2024 fallen-leaves089.
 > [`spring-boot-security-filters`](https://github.com/fallen-leaves089/spring-boot-security-filters)，
 > 由 Spring Boot 自动加载它们的自动配置。
 
+## 30 秒看懂
+
+- **解决什么**：不想分别接 JWT 和安全过滤器，就只引这一个依赖。
+- **你能得到**：JWT starter 与过滤器 starter，以及两者的 Spring Boot 自动配置。
+- **适合**：Spring Boot 3 MVC 项目，认证和基础安全过滤都需要。
+- **不适合**：只需要其中一项能力；用对应的子仓库依赖更小。
+
+## 最短演示
+
+```xml
+<dependency>
+  <groupId>com.github.fallen-leaves089</groupId>
+  <artifactId>spring-boot-security-starter</artifactId>
+  <version>1.1.0</version>
+</dependency>
+```
+
+```yaml
+jwt:
+  secret: "${JWT_SECRET:replace-with-a-32-byte-secret}"
+  exclude-paths:
+    - /api/login
+```
+
+完整配置见[快速开始](#快速开始)。
+
 ---
 
 ## 功能特性
 
 | 模块 | 由哪个依赖提供 | 说明 |
 |------|----------------|------|
-| JWT 签发与解析 | `spring-boot-jwt-starter` | 基于 JJWT 0.12.x 与 HMAC-SHA 签名/解析。 |
+| JWT 签发与解析 | `spring-boot-jwt-starter` | 基于 JJWT 0.13.x 与 HMAC-SHA 签名/解析。 |
 | JWT 请求校验 | `spring-boot-jwt-starter` | 拦截请求、校验 Token 并注入 `userId`。 |
 | 路径遍历防护 | `spring-boot-jwt-starter` | 拒绝包含 `../`、`..\\` 或编码遍历序列的请求。 |
-| 过期响应标记 | `spring-boot-jwt-starter` | 401 响应中携带 `TOKEN_EXPIRED` 标识。 |
+| 401 原因区分 | `spring-boot-jwt-starter` | 401 响应返回 `TOKEN_MISSING`、`TOKEN_INVALID` 或 `TOKEN_EXPIRED`。 |
 | 安全响应头 | `spring-boot-security-filters` | 输出 CSP / HSTS / X-Frame-Options 等响应头。 |
 | 接口限流 | `spring-boot-security-filters` | 基于 IP 的滑动窗口限流，超限返回 429。 |
 | 可信代理真实 IP | `spring-boot-security-filters` | 解析可信代理后的客户端 IP。 |
@@ -50,7 +76,7 @@ MIT License. Copyright (c) 2024 fallen-leaves089.
 <dependency>
     <groupId>com.github.fallen-leaves089</groupId>
     <artifactId>spring-boot-security-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -64,7 +90,7 @@ dependencyResolutionManagement {
 }
 
 dependencies {
-    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.0.0")
+    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.1.0")
 }
 ```
 
@@ -78,6 +104,9 @@ dependencies {
 jwt:
   secret: ${JWT_SECRET:dev-please-override}
   expiration: 86400
+  exclude-paths:
+    - /api/login
+    - /api/register
 
 security:
   rate-limit:
@@ -88,7 +117,7 @@ security:
     enabled: true
 ```
 
-无需额外 Java 代码或 `@ComponentScan`。
+无需额外 Java 代码或 `@ComponentScan`。默认不放行任何路径，请把所有公开接口加入 `jwt.exclude-paths`。
 
 ---
 
@@ -154,17 +183,23 @@ mvn -B verify
 
 ## 发布
 
-JitPack 会根据 Git tag 自动构建发布。
+JitPack 会根据 Git tag 自动构建发布。Git tag 使用 `v1.1.0`，上面的依赖坐标仍使用 `1.1.0`。
 
 ```bash
-git tag 1.0.0
-git push origin 1.0.0
+git tag v1.1.0
+git push origin v1.1.0
 ```
 
 随后可使用：
 
 ```text
-https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.0.0
+https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.1.0
 ```
 
-发布到 Maven Central 需要 OSSRH 凭据、签名制品以及 source/javadoc jar；且必须先发布两个依赖 Starter。
+发布到 Maven Central 需要仓库凭据、签名制品以及 source/javadoc jar；且必须先发布两个依赖 Starter。
+
+---
+
+## GitHub About 建议
+
+`Spring Boot 3 安全聚合 Starter | JWT 认证 | 安全响应头 | 限流 | CSRF | 真实 IP | 文件魔数校验`
