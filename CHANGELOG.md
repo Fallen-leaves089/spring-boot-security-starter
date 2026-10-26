@@ -17,13 +17,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Refactored the starter into a thin aggregator that depends on `spring-boot-jwt-starter` and `spring-boot-security-filters` instead of duplicating their source files
 - Removed local copies of JWT and filter classes; the new `RealIpFilter`, `CsrfTokenFilter`, and `MagicBytesValidator` are now available transitively from `spring-boot-security-filters`
+- README adds a 30-second overview, shortest demo, and guidance for choosing the aggregator vs a leaf starter
+- Quick start now includes `jwt.exclude-paths`; JJWT references are aligned with 0.13.x
+- Release tags are documented as `v1.1.0`; the JitPack coordinate is `1.1.0`
 
 ## [1.0.0] - 2026-08-12
 
 ### Added
 
 - Merge `spring-boot-jwt-starter` and `spring-boot-security-filters` into a single starter
-- JWT auto configuration: `JwtAutoConfiguration`, `JwtUtil` (JJWT 0.12.x, HMAC-SHA), `AuthInterceptor`, `TokenExpiredData`
+- JWT auto configuration: `JwtAutoConfiguration`, `JwtUtil` (JJWT 0.13.x, HMAC-SHA), `AuthInterceptor`, `TokenExpiredData`
 - Security headers filter: CSP / HSTS / X-Frame-Options / X-Content-Type-Options (8 headers)
 - IP-based sliding-window rate limiting: `RateLimitFilter` with 429 responses
 - Configurable via `jwt.*` / `security.rate-limit.*` / `security.security-headers.*`
