@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-10-27
+
+### Changed
+
+- Depend on `spring-boot-security-filters` 1.2.0 and `spring-boot-jwt-starter` 1.1.2.
+- Inherit context-path-aware matching, safe rate-limit wildcards, CSRF segment-boundary fixes, and custom `JwtUtil` bean support.
+
 ## [1.2.0] - 2026-10-27
 
 ### Changed

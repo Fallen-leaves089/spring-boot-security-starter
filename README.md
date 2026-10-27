@@ -29,7 +29,7 @@ MIT License. Copyright (c) 2024 fallen-leaves089.
 <dependency>
   <groupId>com.github.fallen-leaves089</groupId>
   <artifactId>spring-boot-security-starter</artifactId>
-  <version>1.2.0</version>
+  <version>1.2.1</version>
 </dependency>
 ```
 
@@ -79,7 +79,7 @@ This project is published through [JitPack](https://jitpack.io). Add the JitPack
 <dependency>
     <groupId>com.github.fallen-leaves089</groupId>
     <artifactId>spring-boot-security-starter</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
@@ -93,7 +93,7 @@ dependencyResolutionManagement {
 }
 
 dependencies {
-    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.2.0")
+    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.2.1")
 }
 ```
 
@@ -186,17 +186,17 @@ This aggregator intentionally keeps only a marker class. The behavior tests live
 
 ## Releasing
 
-JitPack builds a release automatically from a Git tag. Use the `v` prefix for the tag; the dependency coordinate above remains `1.2.0`. Tag and publish the two leaf starters before tagging this aggregator.
+JitPack builds a release automatically from a Git tag. Use the `v` prefix for the tag; the dependency coordinate above remains `1.2.1`. Tag and publish the two leaf starters before tagging this aggregator.
 
 ```bash
-git tag v1.2.0
-git push origin v1.2.0
+git tag v1.2.1
+git push origin v1.2.1
 ```
 
 Then use:
 
 ```text
-https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.2.0
+https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.2.1
 ```
 
 Publishing to Maven Central requires repository credentials, signed artifacts, and source/javadoc jars. The two dependency starters must be published before this aggregator can resolve from Maven Central.
