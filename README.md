@@ -21,6 +21,7 @@ MIT License. Copyright (c) 2024 fallen-leaves089.
 - **What you get:** the JWT starter and the filter starter, including their Spring Boot auto-configurations.
 - **Use it when:** a Spring Boot 3 MVC app needs both authentication and baseline security filters.
 - **Not for:** apps that need only one capability; use the smaller leaf starter instead.
+- **Before upgrading:** the leaf starters auto-configure with defaults; importing this aggregator adds security headers, enables rate limiting once paths are configured, and protects `/admin` with session CSRF. Review those defaults before rollout.
 
 ## Shortest demo
 
@@ -28,7 +29,7 @@ MIT License. Copyright (c) 2024 fallen-leaves089.
 <dependency>
   <groupId>com.github.fallen-leaves089</groupId>
   <artifactId>spring-boot-security-starter</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
@@ -52,7 +53,7 @@ See [Quick start](#quick-start) for the full configuration.
 | Path traversal protection | `spring-boot-jwt-starter` | Rejects requests containing `../`, `..\\`, or encoded traversal sequences. |
 | Distinct 401 reasons | `spring-boot-jwt-starter` | Returns `TOKEN_MISSING`, `TOKEN_INVALID`, or `TOKEN_EXPIRED` on 401 responses. |
 | Security headers | `spring-boot-security-filters` | Adds CSP / HSTS / X-Frame-Options and other response headers. |
-| Rate limiting | `spring-boot-security-filters` | IP-based sliding-window limiting with configurable 429 responses. |
+| Rate limiting | `spring-boot-security-filters` | IP-based fixed-window limiting with configurable 429 responses. |
 | Trusted-proxy real IP | `spring-boot-security-filters` | Resolves the client IP behind a trusted proxy. |
 | Session CSRF tokens | `spring-boot-security-filters` | Protects configurable path prefixes with `X-CSRF-TOKEN` or `_csrf`. |
 | Magic-byte validation | `spring-boot-security-filters` | Validates image/video magic bytes against a claimed extension. |
@@ -78,7 +79,7 @@ This project is published through [JitPack](https://jitpack.io). Add the JitPack
 <dependency>
     <groupId>com.github.fallen-leaves089</groupId>
     <artifactId>spring-boot-security-starter</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -92,7 +93,7 @@ dependencyResolutionManagement {
 }
 
 dependencies {
-    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.1.0")
+    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.2.0")
 }
 ```
 
@@ -185,17 +186,17 @@ This aggregator intentionally keeps only a marker class. The behavior tests live
 
 ## Releasing
 
-JitPack builds a release automatically from a Git tag. Use the `v` prefix for the tag; the dependency coordinate above remains `1.1.0`.
+JitPack builds a release automatically from a Git tag. Use the `v` prefix for the tag; the dependency coordinate above remains `1.2.0`. Tag and publish the two leaf starters before tagging this aggregator.
 
 ```bash
-git tag v1.1.0
-git push origin v1.1.0
+git tag v1.2.0
+git push origin v1.2.0
 ```
 
 Then use:
 
 ```text
-https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.1.0
+https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.2.0
 ```
 
 Publishing to Maven Central requires repository credentials, signed artifacts, and source/javadoc jars. The two dependency starters must be published before this aggregator can resolve from Maven Central.

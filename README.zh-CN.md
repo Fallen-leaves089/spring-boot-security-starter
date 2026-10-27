@@ -19,6 +19,7 @@ MIT License. Copyright (c) 2024 fallen-leaves089.
 - **你能得到**：JWT starter 与过滤器 starter，以及两者的 Spring Boot 自动配置。
 - **适合**：Spring Boot 3 MVC 项目，认证和基础安全过滤都需要。
 - **不适合**：只需要其中一项能力；用对应的子仓库依赖更小。
+- **升级前注意**：两个子包默认会自动配置；引入聚合包后会添加安全响应头、在配置路径后启用限流，并用 Session CSRF 保护 `/admin`。上线前请先核对这些默认值。
 
 ## 最短演示
 
@@ -26,7 +27,7 @@ MIT License. Copyright (c) 2024 fallen-leaves089.
 <dependency>
   <groupId>com.github.fallen-leaves089</groupId>
   <artifactId>spring-boot-security-starter</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
@@ -50,7 +51,7 @@ jwt:
 | 路径遍历防护 | `spring-boot-jwt-starter` | 拒绝包含 `../`、`..\\` 或编码遍历序列的请求。 |
 | 401 原因区分 | `spring-boot-jwt-starter` | 401 响应返回 `TOKEN_MISSING`、`TOKEN_INVALID` 或 `TOKEN_EXPIRED`。 |
 | 安全响应头 | `spring-boot-security-filters` | 输出 CSP / HSTS / X-Frame-Options 等响应头。 |
-| 接口限流 | `spring-boot-security-filters` | 基于 IP 的滑动窗口限流，超限返回 429。 |
+| 接口限流 | `spring-boot-security-filters` | 基于 IP 的固定窗口限流，超限返回 429。 |
 | 可信代理真实 IP | `spring-boot-security-filters` | 解析可信代理后的客户端 IP。 |
 | Session CSRF | `spring-boot-security-filters` | 使用 `X-CSRF-TOKEN` 或 `_csrf` 保护路径前缀。 |
 | Magic Bytes 校验 | `spring-boot-security-filters` | 校验图片/视频文件魔数与扩展名是否一致。 |
@@ -76,7 +77,7 @@ jwt:
 <dependency>
     <groupId>com.github.fallen-leaves089</groupId>
     <artifactId>spring-boot-security-starter</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -90,7 +91,7 @@ dependencyResolutionManagement {
 }
 
 dependencies {
-    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.1.0")
+    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.2.0")
 }
 ```
 
@@ -183,17 +184,17 @@ mvn -B verify
 
 ## 发布
 
-JitPack 会根据 Git tag 自动构建发布。Git tag 使用 `v1.1.0`，上面的依赖坐标仍使用 `1.1.0`。
+JitPack 会根据 Git tag 自动构建发布。Git tag 使用 `v1.2.0`，上面的依赖坐标仍使用 `1.2.0`。请先发布两个子包，再给聚合包打 tag。
 
 ```bash
-git tag v1.1.0
-git push origin v1.1.0
+git tag v1.2.0
+git push origin v1.2.0
 ```
 
 随后可使用：
 
 ```text
-https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.1.0
+https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.2.0
 ```
 
 发布到 Maven Central 需要仓库凭据、签名制品以及 source/javadoc jar；且必须先发布两个依赖 Starter。
