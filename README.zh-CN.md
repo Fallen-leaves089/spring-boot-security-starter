@@ -27,7 +27,7 @@ MIT License. Copyright (c) 2024 fallen-leaves089.
 <dependency>
   <groupId>com.github.fallen-leaves089</groupId>
   <artifactId>spring-boot-security-starter</artifactId>
-  <version>1.2.0</version>
+  <version>1.2.1</version>
 </dependency>
 ```
 
@@ -77,7 +77,7 @@ jwt:
 <dependency>
     <groupId>com.github.fallen-leaves089</groupId>
     <artifactId>spring-boot-security-starter</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
@@ -91,7 +91,7 @@ dependencyResolutionManagement {
 }
 
 dependencies {
-    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.2.0")
+    implementation("com.github.fallen-leaves089:spring-boot-security-starter:1.2.1")
 }
 ```
 
@@ -184,17 +184,17 @@ mvn -B verify
 
 ## 发布
 
-JitPack 会根据 Git tag 自动构建发布。Git tag 使用 `v1.2.0`，上面的依赖坐标仍使用 `1.2.0`。请先发布两个子包，再给聚合包打 tag。
+JitPack 会根据 Git tag 自动构建发布。Git tag 使用 `v1.2.1`，上面的依赖坐标仍使用 `1.2.1`。请先发布两个子包，再给聚合包打 tag。
 
 ```bash
-git tag v1.2.0
-git push origin v1.2.0
+git tag v1.2.1
+git push origin v1.2.1
 ```
 
 随后可使用：
 
 ```text
-https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.2.0
+https://jitpack.io/#fallen-leaves089/spring-boot-security-starter/1.2.1
 ```
 
 发布到 Maven Central 需要仓库凭据、签名制品以及 source/javadoc jar；且必须先发布两个依赖 Starter。
