@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-27
+
+### Changed
+
+- Depend on `spring-boot-security-filters` 1.1.0 and `spring-boot-jwt-starter` 1.1.1.
+- Inherit the trusted-proxy rate-limit fix, lazy counter eviction, stable CSRF token contract, JWT secret validation, and encoded-traversal hardening from the leaf starters.
+- Document that the aggregator enables the leaf defaults and that leaf tags must be published before the aggregator tag.
+
+## [1.1.0] - 2026-10-26
+
 ### Added
 
 - `SECURITY.md` security policy
@@ -28,6 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Merge `spring-boot-jwt-starter` and `spring-boot-security-filters` into a single starter
 - JWT auto configuration: `JwtAutoConfiguration`, `JwtUtil` (JJWT 0.13.x, HMAC-SHA), `AuthInterceptor`, `TokenExpiredData`
 - Security headers filter: CSP / HSTS / X-Frame-Options / X-Content-Type-Options (8 headers)
-- IP-based sliding-window rate limiting: `RateLimitFilter` with 429 responses
+- IP-based rate limiting: `RateLimitFilter` with 429 responses
 - Configurable via `jwt.*` / `security.rate-limit.*` / `security.security-headers.*`
 - 11 unit tests (JwtUtil, RateLimitFilter, SecurityHeadersFilter)
