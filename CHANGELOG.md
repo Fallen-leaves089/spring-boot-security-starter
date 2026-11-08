@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Integration smoke test covering JWT protection, security headers, and rate limiting when both leaf starters are loaded together.
+
 ## [1.2.1] - 2026-10-27
 
 ### Changed

@@ -180,7 +180,7 @@ for i in $(seq 1 61); do curl -s -o /dev/null -w '%{http_code}\n' http://localho
 mvn -B verify
 ```
 
-This aggregator intentionally keeps only a marker class. The behavior tests live in the two dependency repositories.
+This aggregator intentionally keeps only a marker class. An integration smoke test verifies that both leaf auto-configurations load together; detailed behavior tests live in the two dependency repositories.
 
 ---
 
