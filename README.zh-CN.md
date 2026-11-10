@@ -95,7 +95,7 @@ dependencies {
 }
 ```
 
-> 适用 Spring Boot 3.2.x + Java 17。
+> 适用 Spring Boot 3.5.x + Java 17。
 
 ---
 

@@ -97,7 +97,7 @@ dependencies {
 }
 ```
 
-> Requires Spring Boot 3.2.x and Java 17.
+> Requires Spring Boot 3.5.x and Java 17.
 
 ---
 

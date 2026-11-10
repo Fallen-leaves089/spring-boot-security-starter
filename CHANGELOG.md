@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Integration smoke test covering JWT protection, security headers, and rate limiting when both leaf starters are loaded together.
 
+### Changed
+
+- Keep the aggregator on the maintained Spring Boot 3.5 line (`3.5.16`) so existing Spring Boot 3 consumers are not broken by an implicit major upgrade.
+
 ## [1.2.1] - 2026-10-27
 
 ### Changed
